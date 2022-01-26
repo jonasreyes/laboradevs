@@ -98,6 +98,14 @@
 
   </div>
 
+  <!-- # Caja de Skills -->
+  <div class="mb-5">
+    <label for="skills" class="block text-grey-700 text-sm mb-2">
+      Habilidades y Conocimientos:
+    </label>
+    <lista-skills :skills="{{ json_encode($skills) }}"></lista-skills>
+  </div>
+
 
   <div class="mb-5">
     <button type="submit" class="w-full p-3 font-bold text-grey-100 uppercase bg-teal-500 hover:bg-teal-700 focus:outline-none focus:shadow-outline ">
