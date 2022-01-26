@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Skill;
 use App\Models\Experiencia;
 use App\Models\Salario;
 use App\Models\Ubicacion;
@@ -42,9 +43,10 @@ class VacanteController extends Controller
     $experiencias = Experiencia::all();
     $ubicacions = Ubicacion::all();
     $salarios = Salario::all();
+    $skills = Skill::all();
 
     // llamamos la vista.
-    return view('vacantes.create')->with(compact('categorias', 'experiencias', 'ubicacions', 'salarios'));
+    return view('vacantes.create')->with(compact('categorias', 'experiencias', 'ubicacions', 'salarios', 'skills'));
   }
 
   /**
