@@ -13,14 +13,22 @@
 @section('content')
 <h1 class="text-2xl text-center mt-10">Nueva Vacante</h1>
 
-<form class="max-w-lg mx-auto my-10">
+<form action="{{ route('vacantes.store') }}" method="POST" class="max-w-lg mx-auto my-10">
+  @csrf
 
   <div class="mb-5">
     <label for="titulo" class="block text-grey-700 text-sm mb-2">
       Título Vacante:
     </label>
 
-    <input id="titulo" type="text" class="p-3 bg-white rounded form-input w-full @error('titulo ') is-invalid @enderror" name="titulo" value="{{ old('titulo') }}" autofocus>
+    <input id="titulo" type="text" class="p-3 bg-white rounded form-input w-full @error('titulo ') is-invalid @enderror" name="titulo" value="{{ old('titulo') }}" placeholder="Título de la Vacante" autofocus>
+
+    @error('titulo')
+    <div class="bg-red-100 border border-red-400 border-l-4 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+      <strong class="font-bold">¡Error!</strong>
+      <span class="block">{{ $message }}</span>
+    </div>
+    @enderror
   </div>
 
   <!-- Importamos la lista de categorias desde la base de datos. -->
@@ -31,9 +39,16 @@
     <select id="categoria" class="block appearance-none w-full border border-grey-200 text-grey-700 rounded leading-tight focus:bg-white focus:border-grey-500 p-3 bg-white" name="categoria">
       <option disabled selected>- Selecciona -</option>
       @foreach ($categorias as $categoria)
-      <option value="{{ $categoria->id }}">{{$categoria->nombre}}</option>
+      <option {{ old('categoria') == $categoria->id ? 'selected' : '' }} value="{{ $categoria->id }}">{{$categoria->nombre}}</option>
       @endforeach
     </select>
+
+    @error('categoria')
+    <div class="bg-red-100 border border-red-400 border-l-4 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+      <strong class="font-bold">¡Error!</strong>
+      <span class="block">{{ $message }}</span>
+    </div>
+    @enderror
   </div>
 
   <!-- Importamos la lista de Experiencias desde la base de datos. -->
@@ -44,9 +59,16 @@
     <select id="experiencia" class="block appearance-none w-full border border-grey-200 text-grey-700 rounded leading-tight focus:bg-white focus:border-grey-500 p-3 bg-white" name="experiencia">
       <option disabled selected>- Selecciona -</option>
       @foreach ($experiencias as $experiencia)
-      <option value="{{ $experiencia->id }}">{{$experiencia->nombre}}</option>
+      <option {{ old('experiencia') == $experiencia->id ? 'selected' : '' }} value="{{ $experiencia->id }}">{{$experiencia->nombre}}</option>
       @endforeach
     </select>
+
+    @error('experiencia')
+    <div class="bg-red-100 border border-red-400 border-l-4 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+      <strong class="font-bold">¡Error!</strong>
+      <span class="block">{{ $message }}</span>
+    </div>
+    @enderror
   </div>
 
   <!-- Importamos la lista de Ubicaciones desde la base de datos. -->
@@ -57,9 +79,16 @@
     <select id="ubicacion" class="block appearance-none w-full border border-grey-200 text-grey-700 rounded leading-tight focus:bg-white focus:border-grey-500 p-3 bg-white" name="ubicacion">
       <option disabled selected>- Selecciona -</option>
       @foreach ($ubicacions as $ubicacion)
-      <option value="{{ $ubicacion->id }}">{{$ubicacion->nombre}}</option>
+      <option {{ old('ubicacion') == $ubicacion->id ? 'selected' : '' }} value="{{ $ubicacion->id }}">{{$ubicacion->nombre}}</option>
       @endforeach
     </select>
+
+    @error('ubicacion')
+    <div class="bg-red-100 border border-red-400 border-l-4 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+      <strong class="font-bold">¡Error!</strong>
+      <span class="block">{{ $message }}</span>
+    </div>
+    @enderror
   </div>
 
   <!-- Importamos la lista de Salarios desde la base de datos. -->
@@ -70,9 +99,16 @@
     <select id="salario" class="block appearance-none w-full border border-grey-200 text-grey-700 rounded leading-tight focus:bg-white focus:border-grey-500 p-3 bg-white" name="salario">
       <option disabled selected>- Selecciona -</option>
       @foreach ($salarios as $salario)
-      <option value="{{ $salario->id }}">{{$salario->nombre}}</option>
+      <option {{ old('salario') == $salario->id ? 'selected' : '' }} value="{{ $salario->id }}">{{$salario->nombre}}</option>
       @endforeach
     </select>
+
+    @error('salario')
+    <div class="bg-red-100 border border-red-400 border-l-4 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+      <strong class="font-bold">¡Error!</strong>
+      <span class="block">{{ $message }}</span>
+    </div>
+    @enderror
   </div>
 
   <!-- # Caja de Edición -->
@@ -82,8 +118,14 @@
     </label>
 
     <div class="editable bg-white p-3 rounded w-full form-input text-grey-700"></div>
-    <input type="hidden" name="descripcion" id="descripcion">
+    <input type="hidden" name="descripcion" id="descripcion" value="{{ old('descripcion') }}">
 
+    @error('descripcion')
+    <div class="bg-red-100 border border-red-400 border-l-4 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+      <strong class="font-bold">¡Error!</strong>
+      <span class="block">{{ $message }}</span>
+    </div>
+    @enderror
   </div>
 
   <!-- # Caja de Imagen -->
@@ -125,7 +167,7 @@
     // MediumEditor
     const editor = new MediumEditor('.editable', {
       toolbar: {
-        buttons: ['bold', 'italic', 'underline', 'quote', 'anchor', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'orderedList', 'unorderedList', 'h2', 'h3'],
+        buttons: ['bold', 'italic', 'underline', 'quote', 'anchor', 'justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'orderedlist', 'unorderedlist', 'h2', 'h3'],
         static: true,
         sticky: true
       },
@@ -134,10 +176,14 @@
       }
     });
 
+    // Agrega al input hidden lo que el usuario escribe en el medium editor.
     editor.subscribe('editableInput', function(eventObj, editable) {
       const contenido = editor.getContent();
       document.querySelector('#descripcion').value = contenido;
     });
+
+    // Llena el editor con el contenido del input hidden.
+    editor.setContent(document.querySelector('#descripcion').value);
 
     // Dropzone
     const dropzoneDevJobs = new Dropzone('#dropzoneDevJobs', {
