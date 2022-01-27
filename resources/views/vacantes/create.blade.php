@@ -135,17 +135,32 @@
     </label>
 
     <div id="dropzoneDevJobs" class="dropzone rounded bg-white p-5 text-center"></div>
-    <input type="hidden" id="imagen" name="imagen">
+    <input type="hidden" id="imagen" name="imagen" value="{{ old('imagen') }}">
     <p id="error" class=""></p>
+    @error('imagen')
+    <div class="bg-red-100 border border-red-400 border-l-4 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+      <strong class="font-bold">¡Error!</strong>
+      <span class="block">{{ $message }}</span>
+    </div>
+    @enderror
 
   </div>
 
   <!-- # Caja de Skills -->
   <div class="mb-5">
-    <label for="skills" class="block text-grey-700 text-sm mb-2">
-      Habilidades y Conocimientos:
+    <label for="skills" class="block text-grey-700 text-sm mb-5">
+      Habilidades y Conocimientos: <span class="text-xs">(Elige al menos 3)</span>
     </label>
-    <lista-skills :skills="{{ json_encode($skills) }}"></lista-skills>
+    <lista-skills :skills="{{ json_encode($skills) }}" :oldskills="{{ json_encode(old('skills')) }}"></lista-skills>
+
+
+
+    @error('skills')
+    <div class="bg-red-100 border border-red-400 border-l-4 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
+      <strong class="font-bold">¡Error!</strong>
+      <span class="block">{{ $message }}</span>
+    </div>
+    @enderror
   </div>
 
 
@@ -196,6 +211,22 @@
       headers: {
         'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
       },
+      init: function() {
+        // vamos a evitar que se repliquen imagenes subidas al servidor mientras falla algún 
+        // envío de vacantes.
+        if (document.querySelector('#imagen').value.trim()) {
+          let imagenPublicada = {};
+          imagenPublicada.size = 1234;
+          imagenPublicada.name = document.querySelector('#imagen').value;
+
+          this.options.addedfile.call(this, imagenPublicada);
+          this.options.thumbnail.call(this, imagenPublicada, `/storage/vacantes/${imagenPublicada.name}`);
+
+          imagenPublicada.previewElement.classList.add('dz-success');
+          imagenPublicada.previewElement.classList.add('dz-complete');
+
+        }
+      },
       success: function(file, response) {
         console.log(response.correcto)
         // console.log(file) 
@@ -220,7 +251,9 @@
       removedfile: function(file, response) {
         file.previewElement.parentNode.removeChild(file.previewElement);
         params = {
-          imagen: file.nombreServidor
+          // Aquí resolvemos el poder borrar la imagen que se había cargado en el servidor en un envío fallido o error de validación
+          // de algun campo obligatorio del formulario.
+          imagen: file.nombreServidor ?? document.querySelector('#imagen').value
         }
 
         axios.post('/vacantes/borrarimagen', params)

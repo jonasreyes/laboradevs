@@ -4,6 +4,7 @@
 <ul class="flex flex-wrap justify-center">
   <li 
   class="border border-grey-500 px-10 py-3 mb-3 mr-4 rounded"
+  :class="verificarClaseActiva(skill.nombre)"
   v-for="( skill, i ) in this.skills"
   v-bind:key="i" 
   @click="activar($event)"
@@ -18,16 +19,21 @@
 
 <script>
 export default {
-  props: ['skills'],
-  mounted() {
-      console.log(this.skills)
-    },
+  props: ['skills', 'oldskills'],
     data: function(){
       return {
           habilidades: new Set()
         }
-
       },
+      created: function(){
+          if(this.oldskills){
+              const skillsArray = this.oldskills.split(',');
+              skillsArray.forEach(skill => this.habilidades.add(skill));
+            }
+        },
+      mounted: function() {
+        document.querySelector('#skills').value = this.oldskills;
+        },
     methods: {
         activar(e){
            if(e.target.classList.contains('bg-teal-400')){
@@ -48,7 +54,10 @@ export default {
                // agregar habilidades al input hidden
                const stringHabilidades = [...this.habilidades];
                document.querySelector('#skills').value = stringHabilidades;
-          }
+          },
+          verificarClaseActiva(skill){
+              return this.habilidades.has(skill) ? 'bg-teal-400' : '';
+            }
       }
 }
 </script>

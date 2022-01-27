@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Categoria;
 use App\Models\Skill;
 use App\Models\Experiencia;
@@ -26,8 +27,12 @@ class VacanteController extends Controller
    */
   public function index()
   {
-    //
-    return view('vacantes.index');
+    // $vacantes = auth()->user()->vacantes;
+    $vacantes = Vacante::where('user_id', auth()->user()->id)->simplePaginate(3);
+
+
+
+    return view('vacantes.index')->with(compact('vacantes'));
   }
 
   /**
@@ -66,8 +71,23 @@ class VacanteController extends Controller
       'salario' => 'required',
       'descripcion' => 'required|min:50',
       'imagen' => 'required',
+      'skills' => 'required',
     ]);
-    return "Desde Store";
+
+    // Almacenar en la BD
+    // aquí se presenta un detallito.
+    auth()->user()->vacantes()->create([
+      'titulo' => $data['titulo'],
+      'categoria_id' => $data['categoria'],
+      'experiencia_id' => $data['experiencia'],
+      'ubicacion_id' => $data['ubicacion'],
+      'salario_id' => $data['salario'],
+      'descripcion' => $data['descripcion'],
+      'imagen' => $data['imagen'],
+      'skills' => $data['skills'],
+    ]);
+
+    return redirect()->action([VacanteController::class, 'index']);
   }
 
   /**
