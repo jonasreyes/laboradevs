@@ -14,11 +14,6 @@ use Illuminate\Support\Facades\File;
 
 class VacanteController extends Controller
 {
-  public function __construct()
-  {
-    // Revisamos que el usuario esté autenticado y verificado. 
-    $this->middleware(['auth', 'verified']);
-  }
 
   /**
    * Display a listing of the resource.
@@ -98,7 +93,7 @@ class VacanteController extends Controller
    */
   public function show(Vacante $vacante)
   {
-    //
+    return view('vacantes.show')->with(compact('vacante'));
   }
 
   /**

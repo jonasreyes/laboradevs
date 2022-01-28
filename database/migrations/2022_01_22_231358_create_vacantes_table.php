@@ -43,6 +43,7 @@ class CreateVacantesTable extends Migration
     Schema::create('skills', function (Blueprint $table) {
       $table->id();
       $table->string('nombre');
+      $table->text('descripcion')->nullable();
       $table->timestamps();
     });
 

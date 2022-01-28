@@ -20,23 +20,20 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
+// Ruta de Home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+// Rutas autenticads y verificadas. (estilo para Laravel 8)
+Route::middleware(['auth', 'verified'])->group(function () {
+  Route::get('/vacantes', [VacanteController::class, 'index'])->name('vacantes.index');
+  Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vacantes.create');
+  Route::post('/vacantes', [VacanteController::class, 'store'])->name('vacantes.store');
 
-// Rutas de Vacantes
+  // Subir imágenes
+  Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
+  Route::post('/vacantes/borrarimagen', [VacanteController::class, 'borrarimagen'])->name('vacantes.borrar');
+});
 
-Route::get(
-  '/vacantes',
-  [VacanteController::class, 'index']
-)->name('vacantes.index');
 
-Route::get(
-  '/vacantes/create',
-  [VacanteController::class, 'create']
-)->name('vacantes.create');
-
-Route::post('/vacantes', [VacanteController::class, 'store'])->name('vacantes.store');
-
-// Subir imágenes
-Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
-Route::post('/vacantes/borrarimagen', [VacanteController::class, 'borrarimagen'])->name('vacantes.borrar');
+// Rutas de Vacantes publica (No se requiera esta autenticado ni verificado)
+Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');
