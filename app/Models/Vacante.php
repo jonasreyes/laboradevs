@@ -27,4 +27,10 @@ class Vacante extends Model
   {
     return $this->belongsTo(User::class);
   }
+
+  // relación con categorias de 1:1
+  public function categoria()
+  {
+    return $this->belongsTo(Categoria::class);
+  }
 }
