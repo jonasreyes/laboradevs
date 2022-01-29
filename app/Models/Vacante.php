@@ -33,4 +33,21 @@ class Vacante extends Model
   {
     return $this->belongsTo(Categoria::class);
   }
+
+  // relación con el salario
+  public function salario()
+  {
+    // aquí mi comprensión quizas mejora, estoy entendiendo que este método declara: Yo salario pertenezco a Salario::class..
+    return $this->belongsTo(Salario::class);
+  }
+
+  public function ubicacion()
+  {
+    return $this->belongsTo(Ubicacion::class);
+  }
+
+  public function experiencia()
+  {
+    return $this->belongsTo(Experiencia::class);
+  }
 }
