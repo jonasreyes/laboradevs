@@ -14,6 +14,7 @@
         "autoprefixer": "^10.4.2",
         "axios": "^0.21",
         "bootstrap": "^5.1.3",
+        "jquery": "^3.6.0",
         "laravel-mix": "^6.0.6",
         "laravel-mix-tailwind": "^0.1.2",
         "lodash": "^4.17.19",
@@ -25,5 +26,8 @@
         "vue": "^2.6.12",
         "vue-loader": "^15.9.8",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "lightbox2": "^2.11.3"
     }
 }

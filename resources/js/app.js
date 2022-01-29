@@ -5,8 +5,12 @@
  */
 
 require('./bootstrap');
+require('lightbox2');
 
 window.Vue = require('vue').default;
+
+// import $ from 'jquery';
+// window.$ = window.jQuery = $;
 
 /**
  * The following block of code may be used to automatically register your

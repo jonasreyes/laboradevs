@@ -1,5 +1,8 @@
 @extends ('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+@endsection
 
 @section('content')
 <h1 class="text-3xl text-center mt-10 text-teal-700">{{ $vacante->titulo }}</h1>
@@ -38,7 +41,10 @@
     </p>
     @endforeach
 
-    <div class="descripcion mt-10 mb-5">{!! $vacante->descripcion !!}</div>
+    <a href="/storage/vacantes/{{$vacante->imagen}}" data-lightbox="imagen" data-title="Vacante: {{ $vacante->titulo }}">
+      <img src="/storage/vacantes/{{ $vacante->imagen }}" class="w-40 mt-10">
+      <div class="descripcion mt-10 mb-5">{!! $vacante->descripcion !!}</div>
+    </a>
 
   </div>
 

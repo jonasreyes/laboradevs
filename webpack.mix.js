@@ -14,6 +14,9 @@ const tailwindcss = require('tailwindcss');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+  .autoload({
+    jquery: ['$', 'window.jQuery', 'jQuery']
+  })
   .vue()
   .postCss('resources/css/app.css', 'public/css')
   .options({
