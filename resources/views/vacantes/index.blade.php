@@ -58,9 +58,15 @@
               <a href="" class="text-grey-500 hover:text-gray-600"> Candidatos</a>
             </td>
             <td class="px-6 py-4 whitespace-no-wrap border-b border-grey-200 text-sm leading-5 font-medium">
-              <a href="#" class="text-teal-600 hover:text-teal-900 mr-5">Editar</a>
-              <a href="#" class="text-red-600 hover:text-red-900  mr-5">Eliminar</a>
-              <a href="" class="text-blue-600 hover:text-blue-900">Ver</a>
+              <a href="{{ route('vacantes.show',['vacante' =>$vacante->id]) }}" class="text-blue-600 hover:text-blue-900 mr-2"><span class="material-icons">
+                  find_in_page
+                </span></a>
+              <a href="#" class="text-teal-600 hover:text-teal-900 mr-2"><span class="material-icons">
+                  edit_note
+                </span></a>
+              <a href="#" class="text-red-600 hover:text-red-900"><span class="material-icons">
+                  delete_forever
+                </span></a>
             </td>
           </tr>
           @endforeach
