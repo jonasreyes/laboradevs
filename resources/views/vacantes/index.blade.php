@@ -37,8 +37,8 @@
               <div class="flex items-center">
 
                 <div class="ml-4">
-                  <div class="text-sm leading-5 font-bold text-grey-900">{{ $vacante->titulo }}</div>
-                  <div class="text-sm leading-5 text-grey-500">Categoria: <strong>{{ $vacante->categoria->nombre }}</strong></div>
+                  <div class="text-sm leading-5 font-bold text-grey-900"><a href="{{ route('vacantes.show',[$vacante->id]) }}">{{$vacante->titulo}}</a></div>
+                  <div class="text-sm leading-5 text-grey-500">Categoria: <strong><a href="#">{{ $vacante->categoria->nombre }}</a></strong></div>
                 </div>
               </div>
             </td>

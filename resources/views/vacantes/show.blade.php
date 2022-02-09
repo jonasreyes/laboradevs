@@ -86,6 +86,21 @@
       </div>
 
       <div class="mb-4">
+        <label class="block text-white text-sm font-bold mb-4" for="nombre">Teléfono:</label>
+
+        <input id="telefono" name="telefono" type="tel" class="p-3 bg-grey-100 rounded form-input w-full @error('error') border border-red-500 @enderror" value="{{ old('telefono') }}" placeholder="Ejem: +584125555555">
+
+        @error('telefono')
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 w-full mt-5" role="alert">
+
+          <p>{{ $message }}</p>
+        </div>
+
+        @enderror
+
+      </div>
+
+      <div class="mb-4">
         <label class="block text-white text-sm font-bold mb-4" for="cv">Curriculum (PDF):</label>
 
         <input id="cv" name="cv" type="file" class="p-3 rounded form-input w-full @error('error') border border-red-500 @enderror" accept="application/pdf">
