@@ -55,4 +55,12 @@ class Vacante extends Model
   {
     return $this->belongsTo(User::class, 'user_id');
   }
+
+  // relación de 1:n vacante a candidatos, nótese que he definido el método en singular para mantener la lógica
+  // de que se nombre exactamente como el modelo al que apunta.
+  // si diese error en un futuro ya que que deberé renombrar el método al plural y se habrá despejado la duda.
+  public function candidatos()
+  {
+    return $this->hasMany(Candidato::class);
+  }
 }

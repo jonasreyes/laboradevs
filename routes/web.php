@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\VacanteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::post('/vacantes/borrarimagen', [VacanteController::class, 'borrarimagen'])->name('vacantes.borrar');
 });
 
+Route::post('/candidatos/store', [CandidatoController::class, 'store'])->name('candidatos.store');
 
 // Rutas de Vacantes publica (No se requiera esta autenticado ni verificado)
 Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');
