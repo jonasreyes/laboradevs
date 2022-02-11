@@ -30,7 +30,7 @@ class NuevoCandidato extends Notification
    */
   public function via($notifiable)
   {
-    return ['mail'];
+    return ['mail', 'database'];
   }
 
   /**
@@ -46,6 +46,17 @@ class NuevoCandidato extends Notification
       ->line('La vacante es: ' . $this->vacante)
       ->action('Visita LaboraDevs', url('/'))
       ->line('Gracias por utilizar LaboraDevs!');
+  }
+
+  /**
+    Notificaciones en la base de datos.
+   */
+  public function toDatabase($notifiable)
+  {
+    // retornamos un arreglo denominado data
+    return [
+      'vacante' => $this->vacante,
+    ];
   }
 
   /**

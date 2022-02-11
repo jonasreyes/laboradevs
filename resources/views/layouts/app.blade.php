@@ -36,7 +36,7 @@
   @endif
 
   <div id="app">
-    <nav class="py-2 bg-grey-800 shadow-md">
+    <nav class="py-6 bg-grey-800 shadow-md">
       <div class="container mx-auto px-2">
         <div class="flex items-center justify-around">
 
@@ -60,6 +60,11 @@
             @endif
             @else
             <span class="pr-4 text-sm text-grey-300">{{ Auth::user()->name }}</span>
+
+              <a 
+                class="notifications rounded-full mr-2 px-3 py-2 text-sm {{ (Auth::user()->unreadNotifications()->count() == 0) ? 'text-white bg-teal-500' : 'bg-white text-red-800 font-bold'}}" 
+                href=""
+              ><span class="material-icons md-12 mr-1">mark_email_unread</span>{{ Auth::user()->unreadNotifications()->count() }}</a>
 
 
             <span class="text-grey-300 text-sm pr-4">
