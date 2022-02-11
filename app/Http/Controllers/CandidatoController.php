@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidato;
 use App\Models\Vacante;
+use App\Notifications\NuevoCandidato;
 use Illuminate\Http\Request;
 
 class CandidatoController extends Controller
@@ -62,7 +63,12 @@ class CandidatoController extends Controller
       'cv' => $archivoNombre
     ]);
 
-    return back()->with('estado', 'Tus datos de contacto y CV han sido enviados correctamente al reclutador!!!');
+    // Envío de notificación al reclutador, informando el registro
+    // de un nuevo candidato para su vacante publicada.
+    $reclutador = $vacante->reclutador;
+    $reclutador->notify(new NuevoCandidato($vacante->titulo));
+
+    return back()->with('estado', "Tu postulación se ha enviado exitosamente al recludador de '$vacante->titulo'. ¡Te deseamos Mucha Suerte!");
   }
 
   /**
