@@ -14,9 +14,11 @@ class CandidatoController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function index()
+  public function index(Request $request)
   {
     //
+    dd($request->route('id'));
+    // return view('candidatos.index');
   }
 
   /**

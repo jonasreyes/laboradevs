@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\NotificacionesController;
 use App\Http\Controllers\VacanteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,8 +35,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
   // Subir imágenes
   Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
   Route::post('/vacantes/borrarimagen', [VacanteController::class, 'borrarimagen'])->name('vacantes.borrar');
+
+  // Panel de Notificaciones
+  Route::get('/notificaciones', NotificacionesController::class)->name('notificaciones');
 });
 
+Route::get('/candidatos', [CandidatoController::class, 'index'])->name('candidatos.index');
 Route::post('/candidatos/store', [CandidatoController::class, 'store'])->name('candidatos.store');
 
 // Rutas de Vacantes publica (No se requiera esta autenticado ni verificado)
