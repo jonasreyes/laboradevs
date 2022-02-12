@@ -26,7 +26,10 @@ Auth::routes(['verify' => true]);
 // Ruta de Home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Rutas autenticads y verificadas. (estilo para Laravel 8)
+/**
+ * Rutas autenticadas y verificadas. (estilo para Laravel 8)
+ *
+ */
 Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/vacantes', [VacanteController::class, 'index'])->name('vacantes.index');
   Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vacantes.create');
@@ -39,8 +42,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
   // Panel de Notificaciones
   Route::get('/notificaciones', NotificacionesController::class)->name('notificaciones');
 });
+/**
+ * Fin de rutas autenticadas.
+ */
 
-Route::get('/candidatos', [CandidatoController::class, 'index'])->name('candidatos.index');
+Route::get('/candidatos/{vacante}', [CandidatoController::class, 'index'])->name('candidatos.index');
 Route::post('/candidatos/store', [CandidatoController::class, 'store'])->name('candidatos.store');
 
 // Rutas de Vacantes publica (No se requiera esta autenticado ni verificado)
