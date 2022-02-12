@@ -28,9 +28,9 @@
 <body class="min-h-screen leading-none bg-grey-200">
 
   @if(session('estado'))
-    <div class="bg-teal-500 p-8 text-center text-white font-bold uppercase shadow">
-      <span class="material-icons md-36">check_circle_outline</span>
-      {{ session('estado') }}
+    <div class="bg-teal-100 p-8 text-center text-teal-500 font-bold uppercase">
+      <span class="material-icons md-48">check_circle_outline</span>
+      <span class="">{!! session('estado') !!}</span>
     </div>
 
   @endif

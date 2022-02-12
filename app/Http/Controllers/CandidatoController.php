@@ -70,7 +70,7 @@ class CandidatoController extends Controller
     $reclutador = $vacante->reclutador;
     $reclutador->notify(new NuevoCandidato($vacante->titulo));
 
-    return back()->with('estado', "Tu postulación se ha enviado exitosamente al recludador de ↗'$vacante->titulo'↖. ¡Te deseamos Mucha Suerte!");
+    return back()->with('estado', "Tu postulación se ha enviado exitosamente al recludador de «$vacante->titulo" . "». <br>¡Pronto te contactarán,Te deseamos Mucha Suerte!");
   }
 
   /**
