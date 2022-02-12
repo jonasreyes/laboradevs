@@ -13,7 +13,7 @@
       <span class="material-icons">person</span> Por: <span class="font-normal text-grey-700">{{ $vacante->reclutador->name }}</span>
     </p>
     <p class="block text-teal-700 font-bold my-2">
-      <span class="material-icons">event</span> Publicado: <span class="font-normal text-grey-700">{{ $vacante->created_at->diffForHumans() }}</span>
+      <span class="material-icons">event</span> Publicado: <span class="font-normal text-grey-700">{{ $vacante->created_at->diffForhumans() }}</span>
     </p>
 
     <p class="block text-teal-700 font-bold my-2">
