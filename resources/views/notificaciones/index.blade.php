@@ -21,24 +21,24 @@
             $data = $notificacion->data
 
           @endphp
-              <li class="p-5 bg-teal-100 shadow-md mb-5 rounded">
-                <div class="boxNotify">
-                  <span class="headNotify block">
-                    <p class="Notify text-teal-500">
-                      <span class="material-icons mr-2">message</span>
-                      Nuevo Candidato para:
+              <li class="p-4 border-l-4 border-teal-500 bg-teal-100 shadow-md mb-5 rounded">
+                <div class="boxNotify flex justify-between">
+                  <span class="headNotify">
+                    <p class="Notify text-teal-500 text-sm">
+                      <span class="material-icons mr-1 md-18">message</span>
+                     Nuevo Candidato
                     </p>
                   </span>
-                  <span class="bodyNotify block text-center mb-4 mt-4"> 
-                    <p class="">
-                      <span class="font-bold">{{ $data['vacante'] }}</span>
+                  <span class="footerNotify font-normal text-grey-700">
+                    <p class="text-right text-xs">
+                      <span class="material-icons md-12 mr-2">schedule</span>{{ $notificacion->created_at->diffForhumans() }}
                     </p>
                   </span>
-                  <span class="footerNotify block font-normal text-grey-700">
-                    <p class="text-right text-sm">
-          <span class="material-icons md-18 mr-2">schedule</span>{{ $notificacion->created_at->diffForhumans() }}
-                    </p>
-                  </span>
+                </div>
+                <div class="bodyNotify mt-2"> 
+                  <p class="text-center">
+                   Para: <span class="font-bold">{{ $data['vacante'] }}</span>
+                  </p>
                 </div>
               </li>
 
