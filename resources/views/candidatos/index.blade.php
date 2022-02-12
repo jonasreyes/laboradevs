@@ -37,10 +37,11 @@
             <span class="font-bold"><a href="https://wa.me/{{$candidato->telefono}}">{{$candidato->telefono}}</a></span>
           </p>
           <p class="mb-4">
-            <span class="material-icons text-teal-500">
-            picture_as_pdf
-            </span>
-            <a class="bg-teal-500 p-3 inline-block text-xs uppercase text-white font-bold" href="/storage/cv/{{$candidato->cv}}">Ver CV</a>
+            
+            <a class="bg-teal-500 p-3 inline-block text-xs uppercase text-white font-bold rounded" href="/storage/cv/{{$candidato->cv}}">
+               <span class="material-icons text-white">
+                picture_as_pdf
+               </span> Ver CV</a>
           </p>
         </li>
       @endforeach
