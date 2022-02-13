@@ -16,10 +16,11 @@ class NuevoCandidato extends Notification
    *
    * @return void
    */
-  public function __construct($vacante)
+  public function __construct($vacante, $id_vacante)
   {
     //
     $this->vacante = $vacante;
+    $this->id_vacante = $id_vacante;
   }
 
   /**
@@ -56,6 +57,7 @@ class NuevoCandidato extends Notification
     // retornamos un arreglo denominado data
     return [
       'vacante' => $this->vacante,
+      'id_vacante' => $this->id_vacante
     ];
   }
 

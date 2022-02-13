@@ -76,7 +76,7 @@ class CandidatoController extends Controller
     // Envío de notificación al reclutador, informando el registro
     // de un nuevo candidato para su vacante publicada.
     $reclutador = $vacante->reclutador;
-    $reclutador->notify(new NuevoCandidato($vacante->titulo));
+    $reclutador->notify(new NuevoCandidato($vacante->titulo, $vacante->id));
 
     return back()->with('estado', "Tu postulación se ha enviado exitosamente al recludador de «$vacante->titulo" . "». <br>¡Pronto te contactarán,Te deseamos Mucha Suerte!");
   }

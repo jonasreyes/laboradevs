@@ -36,9 +36,16 @@
                   </span>
                 </div>
                 <div class="bodyNotify mt-2"> 
-                  <p class="text-center">
-                   Para: <span class="font-bold">{{ $data['vacante'] }}</span>
-                  </p>
+                    <p class="text-center">
+                     Para: <span class="font-bold">{{ $data['vacante'] }}</span>
+                    </p>
+                    <p class="text-center">
+                    <a 
+                      href="{{ route('candidatos.index', ['vacante' => $data['id_vacante']] ) }}" 
+                      class="mt-2 bg-teal-500 p-3 inline-block text-xs uppercase text-white font-bold rounded shadow-md" 
+                    >Ver Candidatos
+                    </a>
+                    </p>
                 </div>
               </li>
 
