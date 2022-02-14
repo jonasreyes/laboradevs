@@ -1,5 +1,8 @@
 @extends ('layouts.app')
 
+  @section('styles')
+    @include('ui.styles_material_icons')
+  @endsection
 
 @section('navegacion')
 @include('ui.adminnav')
@@ -43,16 +46,11 @@
               </div>
             </td>
             <td class="px-6 py-4 whitespace-no-wrap border-b border-grey-200">
-              <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-              {{ $vacante->activa ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}
-                ">
-                {!! $vacante->activa ? '<span class="material-icons">
-                  done_all
-                </span> Activa' : '<span class="material-icons">
-                  remove_done
-                </span> Inactiva' !!}
-
               </span>
+              <estado-vacante
+                estado="{{ $vacante->activa}}"
+                vacante-id="{{ $vacante->id}}"
+              ></estado-vacante>
             </td>
             <td class="px-6 py-4 whitespace-no-wrap border-b border-grey-200 text-sm leading-5 text-gray-500">
               <a 
