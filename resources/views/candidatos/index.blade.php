@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+  @section('styles')
+    @include('ui.styles_material_icons')
+  @endsection
 @section('navegacion')
 
   @include('ui.adminnav')

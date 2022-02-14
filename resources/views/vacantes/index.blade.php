@@ -22,7 +22,7 @@
             <th class="px-6 py-3 border-b border-grey-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
               Titulo Vacante
             </th>
-            <th class="px-6 py-3 border-b border-grey-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
+            <th class="text-center px-6 py-3 border-b border-grey-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
               Estado
             </th>
             <th class="px-6 py-3 border-b border-grey-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
@@ -45,7 +45,7 @@
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-grey-200">
+            <td class="text-center px-6 py-4 whitespace-no-wrap border-b border-grey-200">
               </span>
               <estado-vacante
                 estado="{{ $vacante->activa}}"
