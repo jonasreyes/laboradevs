@@ -152,16 +152,4 @@ class VacanteController extends Controller
       return response('Imagen Eliminada', 200);
     }
   }
-
-  // cambiar estado de la vacante (1:Activo | 0:Inactivo) usando AXIOS de vue.js
-  public function estado(Request $request, Vacante $vacante)
-  {
-    // Leer nuevo estado y asignarlo
-    $vacante->activa = $request->estado;
-
-    // Guardando el estado en la BD
-    $vacante->save();
-
-    return response()->json(['respuesta' => 'Estado de vacante actualizada correctamente!']);
-  }
 }

@@ -35,10 +35,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vacantes.create');
   Route::post('/vacantes', [VacanteController::class, 'store'])->name('vacantes.store');
 
-  // Cambiar estado de la vacante (1:Activa | 0:Inactiva)
-  Route::post('vacantes/{vacante}', [VacanteController::class, 'estado'])->name('vacantes.estado');
-
-
   // Subir imágenes
   Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
   Route::post('/vacantes/borrarimagen', [VacanteController::class, 'borrarimagen'])->name('vacantes.borrar');
